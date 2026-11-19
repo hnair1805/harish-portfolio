@@ -40,6 +40,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 button{font:inherit;cursor:pointer}
@@ -52,22 +53,33 @@ section[id],article[id]{scroll-margin-top:70px}
 nav{position:sticky;top:0;z-index:20;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08)}
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
 .brand{color:#fff;font-family:var(--display);font-weight:700;font-size:18px;text-decoration:none}
-.nav-links{display:flex;gap:18px}
-.nav-links a{color:#C7D3E6;text-decoration:none;font-size:14.5px}
+.nav-links{display:flex;gap:6px}
+.nav-links a{color:#C7D3E6;text-decoration:none;font-size:14.5px;padding:10px 8px;display:inline-block}
 .nav-links a:hover{color:#fff}
 
 /* Hero */
 .hero{background:var(--navy);color:#fff;padding:64px 0 72px;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:center}
+.glance{min-width:0}
 .glance{background:var(--navy-2);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:22px}
 .glance h2{font-size:18px;font-weight:700;margin-bottom:14px;color:#fff}
-.g-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.g{display:block;text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px;transition:background .15s,border-color .15s}
-.g:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25)}
-.g .e{font-size:20px}
-.g b{display:block;font-family:var(--display);font-size:22px;color:#5FD6AE;margin-top:4px;line-height:1.15}
-.g span{display:block;font-size:13px;color:#C7D3E6;line-height:1.35;margin-top:2px}
-.g small{display:block;font-size:12px;color:#8FA2BE;margin-top:6px}
+.g-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;border-radius:16px}
+.g-track::-webkit-scrollbar{display:none}
+.g{flex:0 0 100%;scroll-snap-align:start;display:block;text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:22px;min-height:190px}
+.g:hover{background:rgba(255,255,255,.09)}
+.g .e{font-size:30px}
+.g b{display:block;font-family:var(--display);font-size:40px;color:#5FD6AE;margin-top:8px;line-height:1.1;letter-spacing:-.02em}
+.g span{display:block;font-size:15.5px;color:#DCE5F2;line-height:1.4;margin-top:6px;max-width:30ch}
+.g small{display:block;font-size:13px;color:#8FA2BE;margin-top:10px}
+.g-nav{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.g-arrow{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font-size:20px;line-height:1}
+.g-arrow:hover{background:rgba(255,255,255,.1)}
+.g-dots{display:flex;gap:6px}
+.g-dots{gap:0}
+.g-dots button{width:30px;height:36px;border:0;padding:0;background:transparent;display:grid;place-items:center}
+.g-dots button::after{content:"";width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.3);transition:width .2s,background .2s}
+.g-dots button[aria-current="true"]::after{width:22px;background:#5FD6AE}
+.g-arrow{width:40px;height:40px;flex:none}
 .status{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:14px;color:#C7D3E6}
 .dot{flex:none;width:9px;height:9px;border-radius:50%;background:#5FD6AE;box-shadow:0 0 0 4px rgba(95,214,174,.18)}
 .who{display:flex;align-items:center;gap:14px;margin-bottom:22px}
@@ -83,21 +95,19 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:5
 .btn-line{border:1.5px solid rgba(255,255,255,.35);color:#fff;background:transparent}
 .btn-line:hover{background:rgba(255,255,255,.08)}
 
-.race{background:var(--navy);color:#fff;border-radius:22px;padding:28px 32px;margin-bottom:24px;display:grid;grid-template-columns:.8fr 1.2fr;gap:36px;align-items:center}
-.race h2{font-size:21px;font-weight:700}
-.race h2{font-size:24px}
-.race p.hint{font-size:15px;color:#A9B8CF;margin-top:6px}
-.lane{margin-bottom:16px}
-.lane-top{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin-bottom:6px}
-.lane-top .t{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
-.track{height:14px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}
+.race{background:var(--mist);border-radius:14px;padding:14px 16px;margin:4px 0 8px;max-width:520px}
+.race-head{display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--navy);font-size:15px;margin-bottom:10px}
+.race-btn{border:0;background:var(--amber);color:var(--navy);font-weight:700;font-size:13px;padding:6px 12px;border-radius:8px}
+.lane{display:grid;grid-template-columns:86px 1fr 62px;align-items:center;gap:10px;font-size:13.5px;margin-bottom:6px}
+.lane .ln{color:var(--ink)}
+.lane .t{font-variant-numeric:tabular-nums;font-weight:700;text-align:right;white-space:nowrap}
+.track{height:8px;background:#fff;border-radius:999px;overflow:hidden}
 .fill{height:100%;width:0;border-radius:999px}
 .lane.old .fill{background:var(--amber)}
 .lane.new .fill{background:var(--teal)}
-.lane.old .t{color:var(--amber)}
-.lane.new .t{color:#5FD6AE}
-.race-btn{margin-top:6px;width:100%;justify-content:center;background:var(--amber);color:var(--navy)}
-.race .note{margin-top:12px;font-size:13px;color:#8FA2BE;min-height:20px}
+.lane.old .t{color:#B7701A}
+.lane.new .t{color:#0B7A59}
+.race .note{margin-top:4px;font-size:12.5px;color:var(--slate);min-height:18px}
 
 /* Timeline */
 .timeline{background:var(--mist);padding:28px 0}
@@ -108,7 +118,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:5
 .tl .co{font-weight:600;font-size:15px}
 .earlier-tile{flex:2 0 300px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 .earlier-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.earlier-list a,.earlier-list span{flex:none;font-size:13.5px;font-weight:500;background:var(--mist);border:0;border-radius:999px;padding:3px 10px;text-decoration:none}
+.earlier-list a,.earlier-list span{flex:none;font-size:13.5px;font-weight:500;background:var(--mist);border:0;border-radius:999px;padding:8px 12px;text-decoration:none;min-height:36px;display:inline-flex;align-items:center}
 .earlier-list a:hover{background:var(--line)}
 .tl .what{font-size:13px;color:var(--slate);line-height:1.35;margin-top:2px}
 
@@ -123,6 +133,12 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:5
 /* Company sections */
 .company{padding:56px 0 64px}
 .company.tint{background:var(--mist)}
+#att{background:#FFFFFF}
+#neuf{background:#EEF0F3}
+#ctire{background:#E8F1FD}
+#loblaw{background:#EAF6EE}
+#tmobile{background:#FCEEF6}
+#att .co-icon{background:#EEF2F8}
 .co-head{display:flex;gap:16px;align-items:center;margin-bottom:24px}
 .co-icon{font-size:30px;width:58px;height:58px;display:grid;place-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;flex:none}
 .co-head h2{font-size:clamp(26px,3.6vw,36px);font-weight:800;color:var(--navy)}
@@ -160,13 +176,13 @@ details[open] summary::before{content:"–"}
 .pane{flex:1}
 .pane h5{font-family:var(--display);font-size:18px;color:var(--navy);margin-bottom:10px}
 .field{border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:14px;margin-bottom:8px}
-.field small{display:block;color:var(--slate);font-size:11.5px}
+.field small{display:block;color:var(--slate);font-size:12.5px}
 .qrow{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-size:14px;margin-bottom:6px}
 .qrow.me{border-color:var(--teal);background:var(--teal-bg)}
-.pill{font-size:11.5px;padding:2px 8px;border-radius:999px;background:var(--mist);white-space:nowrap}
+.pill{font-size:12.5px;padding:2px 8px;border-radius:999px;background:var(--mist);white-space:nowrap}
 .agent{background:var(--navy);color:#fff;border-radius:12px;padding:12px;font-size:13.5px;margin-top:8px}
 .agent b{display:block;margin-bottom:4px}
-.agent .src{font-size:11.5px;color:#A9B8CF;margin-top:6px}
+.agent .src{font-size:12.5px;color:#A9B8CF;margin-top:6px}
 .dev-nav{display:flex;gap:8px;margin-top:12px}
 .dev-nav button{flex:1;border:0;border-radius:10px;padding:10px;font-weight:600;font-size:14px}
 .dev-nav .back{background:var(--mist);color:var(--navy)}
@@ -200,7 +216,7 @@ details[open] summary::before{content:"–"}
 .zone{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13.5px;opacity:.35;transform:translateX(-6px);transition:opacity .35s,transform .35s}
 .zone.on{opacity:1;transform:none;border-color:var(--teal);background:var(--teal-bg)}
 .zone .z{flex:1}
-.zone .z small{display:block;color:var(--slate);font-size:11.5px}
+.zone .z small{display:block;color:var(--slate);font-size:12.5px}
 .zone .it{font-size:18px;letter-spacing:2px}
 
 /* T-Mobile viz */
@@ -229,21 +245,9 @@ details[open] summary::before{content:"–"}
 .hidden{display:none !important}
 
 /* Neuf */
-.neuf{background:var(--navy);color:#fff}
-.neuf .co-icon{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15)}
-.neuf .co-head h2{color:#fff}
-.neuf .co-head p{color:#C7D3E6}
-.neuf-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
-.neuf .lead{color:#DCE5F2}
-.neuf .kpi{background:rgba(95,214,174,.12)}
-.neuf .kpi b{color:#5FD6AE}
-.neuf .kpi span{color:#DCE5F2}
-.neuf details{border-color:rgba(255,255,255,.15)}
-.neuf summary{color:#fff}
-.neuf summary::before{background:rgba(255,255,255,.12)}
-.neuf .story h4{color:#fff}
-.neuf .story{color:#DCE5F2}
-.neuf .tag{background:rgba(255,255,255,.1);color:#fff}
+.neuf-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:22px;padding:36px}
+.neuf .chat{background:var(--mist)}
+.neuf .reply{background:#fff}
 .chat{background:#fff;color:var(--ink);border-radius:20px;padding:20px}
 .chat h3{font-size:20px;color:var(--navy)}
 .chat .hint{font-size:14px;color:var(--slate);margin:4px 0 14px}
@@ -260,10 +264,24 @@ details[open] summary::before{content:"–"}
 /* Skills */
 section.block{padding:72px 0}
 .head h2{font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--navy);margin-bottom:24px}
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:14px}
 .sk{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}
+.sk .tag{background:rgba(255,255,255,.75)}
+.sk:nth-child(1){background:#E8F1FD;border-color:#C9DDF7}
+.sk:nth-child(2){background:#F1ECFC;border-color:#DCD0F6}
+.sk:nth-child(3){background:#EAF6EE;border-color:#CBE8D5}
+.sk:nth-child(4){background:#FDF2DF;border-color:#F4DDB0}
+.sk:nth-child(5){background:#FCEEF6;border-color:#F3D2E5}
 .sk h3{font-size:17px;color:var(--navy);margin-bottom:4px}
-.also{margin-top:24px;color:var(--slate);max-width:72ch}
+.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.more-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.more-box h3{font-size:19px;color:var(--navy);margin-bottom:12px}
+.plist{list-style:none;display:flex;flex-direction:column;gap:10px}
+.plist li{display:flex;gap:12px;align-items:flex-start;font-size:15px}
+.plist .pe{flex:none;width:34px;height:34px;display:grid;place-items:center;background:var(--mist);border-radius:10px;font-size:17px}
+.plist b{color:var(--navy)}
+.plist small{display:block;color:var(--slate);font-size:13.5px;line-height:1.4}
+@media (max-width:760px){.more-grid{grid-template-columns:1fr}}
 
 
 /* Outside work */
@@ -291,19 +309,31 @@ footer p{margin-top:8px;max-width:56ch}
 .fine-print{margin-top:44px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#8FA2BE}
 
 @media (max-width:980px){
+  .neuf-grid{grid-template-columns:1fr;padding:26px}
   .hero-grid{grid-template-columns:1fr;gap:32px}
-  .race{grid-template-columns:1fr;gap:16px;padding:22px}
   .hero-grid,.neuf-grid{grid-template-columns:1fr}
   .feature{grid-template-columns:1fr;padding:26px}
   .device{max-width:380px;width:100%;margin:0 auto}
   .work{grid-template-columns:1fr 1fr}
 }
 @media (max-width:700px){
-  .nav-links{display:none}
+  .neuf-grid{padding:20px}
+  nav .wrap{height:auto;flex-direction:column;align-items:flex-start;gap:2px;padding-top:10px}
+  .nav-links{width:100%;overflow-x:auto;scrollbar-width:none;gap:4px;padding-bottom:4px;margin:0 -8px}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{flex:none;white-space:nowrap}
+  section[id],article[id]{scroll-margin-top:96px}
   .work{grid-template-columns:1fr}
   .company{padding:44px 0 52px}
   .hero{padding:44px 0 52px}
   .feature{padding:20px}
+}
+@media (max-width:420px){
+  .feature{padding:16px}
+  .device{padding:8px;border-radius:24px}
+  .screen{padding:12px;border-radius:18px}
+  .brand-row .b{flex-basis:84px;font-size:13px}
+  .brand-row .stack{font-size:11.5px;padding:5px 7px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important;scroll-behavior:auto !important}}
 </style>
@@ -341,11 +371,18 @@ footer p{margin-top:8px;max-width:56ch}
     </div>
     <aside class="glance" aria-label="Results at a glance">
       <h2>✨ At a glance</h2>
-      <div class="g-grid">
-        <a class="g" href="#att"><div class="e">🏪</div><b>8–10s → 2–3s</b><span>Store app page load</span><small>AT&amp;T</small></a>
-        <a class="g" href="#neuf"><div class="e">🧠</div><b>5 paying</b><span>customers for my AI startup</span><small>Neuf</small></a>
-        <a class="g" href="#ctire"><div class="e">🛠️</div><b>5 brands</b><span>moved onto one platform</span><small>Canadian Tire</small></a>
-        <a class="g" href="#loblaw"><div class="e">🛒</div><b>~35% faster</b><span>order-to-delivery, ~1,200 stores</span><small>Loblaw Digital</small></a>
+      <div class="g-track" id="gTrack" tabindex="0" aria-label="Results, scroll sideways">
+        <a class="g" href="#att" aria-label="1 of 6"><div class="e">🏪</div><b>8–10s → 2–3s</b><span>Store app page load for AT&amp;T reps</span><small>AT&amp;T</small></a>
+        <a class="g" href="#att" aria-label="2 of 6"><div class="e">🛡️</div><b>15 days</b><span>to ship step-up authentication against AI-driven fraud</span><small>AT&amp;T</small></a>
+        <a class="g" href="#neuf" aria-label="3 of 6"><div class="e">🧠</div><b>5 paying</b><span>customers for the AI startup I co-founded</span><small>Neuf</small></a>
+        <a class="g" href="#ctire" aria-label="4 of 6"><div class="e">🛠️</div><b>5 brands</b><span>moved onto one shared digital platform</span><small>Canadian Tire</small></a>
+        <a class="g" href="#loblaw" aria-label="5 of 6"><div class="e">🛒</div><b>~35% faster</b><span>order-to-delivery across ~1,200 stores</span><small>Loblaw Digital</small></a>
+        <a class="g" href="#tmobile" aria-label="6 of 6"><div class="e">📱</div><b>~30% more</b><span>online upgrades after a checkout redesign</span><small>T-Mobile</small></a>
+      </div>
+      <div class="g-nav">
+        <button class="g-arrow" id="gPrev" aria-label="Previous result">‹</button>
+        <div class="g-dots" id="gDots"></div>
+        <button class="g-arrow" id="gNext" aria-label="Next result">›</button>
       </div>
       <div class="status"><span class="dot"></span>Open to remote Senior TPM, Platform and AI PM roles</div>
     </aside>
@@ -362,7 +399,7 @@ footer p{margin-top:8px;max-width:56ch}
       <div class="earlier-tile">
         <div class="yr">Earlier</div>
         <div class="earlier-list">
-          <a href="#tmobile">📱 T-Mobile</a><span>🛍️ Kohl's</span><span>📡 Verizon</span><span>🏬 JCPenney</span><span>💻 IBM</span><span>🖥️ CSC</span><span>🔎 Google</span>
+          <a href="#tmobile">📱 T-Mobile</a><a href="#previous">🛍️ Kohl's</a><a href="#previous">📡 Verizon</a><a href="#previous">🏬 JCPenney</a><a href="#previous">💻 IBM</a><a href="#previous">🖥️ CSC</a><a href="#previous">🔎 Google</a>
         </div>
       </div>
     </div>
@@ -391,25 +428,6 @@ footer p{margin-top:8px;max-width:56ch}
       <div><h2>AT&amp;T</h2><p>Technical Product Manager, Salesforce Service Platform, 2025–present, Dallas TX</p></div>
     </div>
     <p class="co-intro">I own backend service capabilities (fraud, authentication, billing and search) on Salesforce Service Cloud, and I'm moving call-centre and retail teams off Opus, the legacy platform, onto modern, AI-ready tools.</p>
-    <div class="race">
-      <div class="race-text">
-      <h2>⚡ Feel the difference</h2>
-      <p class="hint">Page load for store reps, before and after the new app. Hit run and watch.</p>
-      </div>
-      <div class="race-lanes">
-      <div class="lane old">
-        <div class="lane-top"><span>🐢 Salesforce + Opus (before)</span><span class="t" id="tOld">0.0s</span></div>
-        <div class="track"><div class="fill" id="fOld"></div></div>
-      </div>
-      <div class="lane new">
-        <div class="lane-top"><span>🚀 New React Native app</span><span class="t" id="tNew">0.0s</span></div>
-        <div class="track"><div class="fill" id="fNew"></div></div>
-      </div>
-      <button class="btn race-btn" id="raceBtn">▶ Run the race</button>
-      <p class="note" id="raceNote" aria-live="polite">Typical times: 8–10s before, 2–3s after.</p>
-      </div>
-    </div>
-
     <article class="feature" data-tags="platform ai commerce">
       <div>
         <h3>One store app before the holiday peak</h3>
@@ -418,6 +436,12 @@ footer p{margin-top:8px;max-width:56ch}
           <div class="kpi"><b>~70% faster</b><span>8–10s → 2–3s page load</span></div>
           <div class="kpi"><b>31 features</b><span>in 2 months, 5 teams (~50 people)</span></div>
           <div class="kpi"><b>~5,000 stores</b><span>built for national rollout</span></div>
+        </div>
+        <div class="race" aria-label="Page-load comparison">
+          <div class="race-head"><span>⚡ Feel the difference</span><button class="race-btn" id="raceBtn">▶ Run</button></div>
+          <div class="lane old"><span class="ln">🐢 Before</span><div class="track"><div class="fill" id="fOld"></div></div><span class="t" id="tOld">0.0s</span></div>
+          <div class="lane new"><span class="ln">🚀 New app</span><div class="track"><div class="fill" id="fNew"></div></div><span class="t" id="tNew">0.0s</span></div>
+          <p class="note" id="raceNote" aria-live="polite">Typical page load: 8–10s before, 2–3s after.</p>
         </div>
         <details>
           <summary>Read the full story</summary>
@@ -732,12 +756,33 @@ footer p{margin-top:8px;max-width:56ch}
     <div class="head"><h2>What I bring</h2></div>
     <div class="skills">
       <div class="sk"><h3>🏗️ Platforms</h3><div class="tags"><span class="tag">API integration</span><span class="tag">Platform migration</span><span class="tag">Microservices</span><span class="tag">Order management</span></div></div>
-      <div class="sk"><h3>🤖 AI &amp; agents</h3><div class="tags"><span class="tag">Agentforce</span><span class="tag">Einstein</span><span class="tag">MCP</span><span class="tag">LLM features</span><span class="tag">Human-in-the-loop</span></div></div>
+      <div class="sk"><h3>🤖 AI &amp; agents</h3><div class="tags"><span class="tag">Agentforce</span><span class="tag">Einstein</span><span class="tag">MCP</span><span class="tag">LLM features</span><span class="tag">Human-in-the-loop</span><span class="tag">Claude Code</span><span class="tag">ChatGPT</span><span class="tag">Vibe coding</span></div></div>
       <div class="sk"><h3>🧭 Product</h3><div class="tags"><span class="tag">Strategy &amp; roadmap</span><span class="tag">Discovery</span><span class="tag">RICE / MoSCoW</span><span class="tag">Pricing</span></div></div>
       <div class="sk"><h3>💳 Domains</h3><div class="tags"><span class="tag">Fraud &amp; auth</span><span class="tag">Billing &amp; payments</span><span class="tag">Quote-to-pay</span><span class="tag">Digital commerce</span></div></div>
       <div class="sk"><h3>🧰 Tools</h3><div class="tags"><span class="tag">Salesforce Service Cloud</span><span class="tag">CPQ</span><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Jira</span><span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Azure</span></div></div>
     </div>
-    <p class="also">Earlier: Product Owner at Kohl's (checkout, discovery and holiday-scale APIs) and Verizon (IoT tracking for the City of Boston and City of Palo Alto), plus roles at JCPenney, IBM, Computer Sciences Corporation and Google. 🎓 MBA, PMP, CSPO, SAFe, AWS Solutions Architect, Salesforce certified.</p>
+    <div class="more-grid">
+      <div class="more-box" id="previous">
+        <h3>Previous experience</h3>
+        <ul class="plist">
+          <li><span class="pe">🛍️</span><div><b>Kohl's</b>, Product Owner, Digital Platform (2016–2017)<small>Checkout and product discovery, holiday-scale APIs</small></div></li>
+          <li><span class="pe">📡</span><div><b>Verizon</b>, Product Owner, IoT Platforms (2015–2016)<small>Real-time tracking for the City of Boston and City of Palo Alto</small></div></li>
+          <li><span class="pe">🏬</span><div><b>JCPenney</b>, Product Owner</div></li>
+          <li><span class="pe">💻</span><div><b>IBM</b>, Software Development Lead</div></li>
+          <li><span class="pe">🖥️</span><div><b>Computer Sciences Corporation</b>, Software Engineer</div></li>
+          <li><span class="pe">🔎</span><div><b>Google</b>, Product Specialist</div></li>
+        </ul>
+      </div>
+      <div class="more-box">
+        <h3>Education &amp; learning</h3>
+        <ul class="plist">
+          <li><span class="pe">🎓</span><div><b>MBA</b><small>Bachelor's degree in Computers</small></div></li>
+          <li><span class="pe">🐍</span><div><b>Harvard CS50: Python</b><small>Programming with Python</small></div></li>
+          <li><span class="pe">🧠</span><div><b>Harvard: AI fundamentals</b><small>Introduction to artificial intelligence</small></div></li>
+          <li><span class="pe">📜</span><div><b>Certifications</b><small>PMP · CSPO · SAFe · AWS Solutions Architect Associate · Salesforce Business Analyst · Salesforce Associate · Lean Six Sigma Black Belt</small></div></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -785,7 +830,7 @@ const $ = id => document.getElementById(id);
   const lanes=[{f:'fOld',t:'tOld',s:9},{f:'fNew',t:'tNew',s:2.5}];
   let running=false;
   btn.addEventListener('click',()=>{
-    if(running) return; running=true; btn.textContent='⏳ Loading…';
+    if(running) return; running=true; btn.textContent='⏳';
     note.textContent='Played 3× faster than real time.';
     const start=performance.now(), speed=reduce?100:3;
     function tick(now){
@@ -797,10 +842,25 @@ const $ = id => document.getElementById(id);
         if(v<l.s) done=false;
       });
       if(!done) requestAnimationFrame(tick);
-      else{ running=false; btn.textContent='🔁 Run it again'; note.textContent='The new app was ready about 6.5 seconds sooner, on every page.'; }
+      else{ running=false; btn.textContent='🔁 Again'; note.textContent='Ready about 6.5 seconds sooner, on every page.'; }
     }
     requestAnimationFrame(tick);
   });
+})();
+
+/* At a glance carousel */
+(function(){
+  const track=$('gTrack'), cards=[...track.children], dots=$('gDots');
+  cards.forEach((c,k)=>{const d=document.createElement('button');d.setAttribute('aria-label','Show result '+(k+1));d.onclick=()=>{go(k);stop();};dots.appendChild(d);});
+  const ds=[...dots.children]; let i=0, timer=null;
+  function go(k){ i=(k+cards.length)%cards.length; track.scrollTo({left:i*track.clientWidth,behavior:reduce?'auto':'smooth'}); mark(); }
+  function mark(){ ds.forEach((d,k)=>d.setAttribute('aria-current',k===i)); }
+  track.addEventListener('scroll',()=>{ const k=Math.round(track.scrollLeft/track.clientWidth); if(k!==i){i=k;mark();} },{passive:true});
+  $('gPrev').onclick=()=>{go(i-1);stop();}; $('gNext').onclick=()=>{go(i+1);stop();};
+  function stop(){ if(timer){clearInterval(timer);timer=null;} }
+  ['pointerdown','wheel','touchstart','keydown','focusin'].forEach(ev=>track.addEventListener(ev,stop,{passive:true}));
+  if(!reduce) timer=setInterval(()=>go(i+1),4500);
+  mark();
 })();
 
 /* AT&T store check-in walkthrough */
@@ -861,7 +921,7 @@ const $ = id => document.getElementById(id);
   const brands=['Canadian Tire','Sport Chek',"Mark's",'Party City','+1 more'];
   const views={
     before:{
-      html:'<div class="brands">'+brands.map(b=>`<div class="brand-row"><span class="b">${b}</span><span class="stack">Own monolith + ESB links</span></div>`).join('')+'</div>',
+      html:'<div class="brands">'+brands.map(b=>`<div class="brand-row"><span class="b">${b}</span><span class="stack">Own monolith + ESB</span></div>`).join('')+'</div>',
       note:'😓 Five separate stacks: every fix built more than once, slow pages, inventory out of sync.'
     },
     after:{

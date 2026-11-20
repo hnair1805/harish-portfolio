@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SFZNGSDYTB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SFZNGSDYTB');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Harish Nair · Senior Technical Product Manager · Platforms, Integrations &amp; AI</title>
 <meta name="description" content="Harish Nair is a Senior Technical Product Manager in Dallas, TX with 17+ years in enterprise platforms, API integrations, platform migration and AI agents at AT&T, Canadian Tire, Loblaw Digital and T-Mobile.">
@@ -981,6 +989,21 @@ const $ = id => document.getElementById(id);
       sec.classList.toggle('hidden',!any);
     });
   }));
+})();
+
+/* Analytics: key clicks */
+(function(){
+  if(typeof gtag!=='function') return;
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a,button'); if(!a) return;
+    const h=a.getAttribute('href')||'';
+    if(h.endsWith('.pdf')) gtag('event','resume_click');
+    else if(h.includes('linkedin.com')) gtag('event','linkedin_click');
+    else if(h.startsWith('mailto:')) gtag('event','email_click');
+    else if(a.id==='raceBtn') gtag('event','demo_race');
+    else if(a.id==='routeBtn') gtag('event','demo_route_order');
+    else if(a.classList.contains('ask')) gtag('event','demo_neuf_question');
+  },{passive:true});
 })();
 </script>
 </body>
